@@ -72,7 +72,7 @@ var scene = {
         // 'look-at': '#board_4_4',
         // 'id': 'camera',
         // camera: {zoom:1, fov:90, spectator:true},
-        camera: {zoom:1.2, fov:60},
+        camera: {zoom:0.9, fov:60},
         // 'wasd-controls': '', 
         // 'position': '',
         // 'rotation': '',
