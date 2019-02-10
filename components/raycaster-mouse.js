@@ -67,6 +67,7 @@ AFRAME.registerComponent('raycaster-mouse', {
         this.mouseDown = false
         this.circleRads = { R: 12, a: 0, b: 0 }
         this.mouseUpTime = new Date()
+        this.justLoaded = true
         // this.cameraObject = document.querySelector('a-camera') //.object3D;
         // this.camera = this.cameraObject.object3D //('camera') //.object3D;
         // // this.camera = this.acamera.getAttribute('camera');
@@ -136,10 +137,10 @@ AFRAME.registerComponent('raycaster-mouse', {
     },
 
     tick: function (a, b) {
-        // console.log('tick...', !this.mouseDown, this.mouseUpTime.getTime(), new Date().getTime(), this.mouseUpTime.getTime() > new Date().getTime() + 4000)
-        if (!this.mouseDown && this.mouseUpTime.getTime() + 3000 < new Date().getTime()) {
+        // console.log('tick...', a, b,  !this.mouseDown, this.mouseUpTime.getTime(), new Date().getTime(), this.mouseUpTime.getTime() > new Date().getTime() + 4000)
+        if (this.justLoaded||!this.mouseDown && this.mouseUpTime.getTime() + 3000 < new Date().getTime()) {
             // console.log('move it!')
-            this.circleRads.a += 1 / 10
+            this.circleRads.a += 1 / 1000
             this.updateCameraPosition()
         }
     },
@@ -171,6 +172,9 @@ AFRAME.registerComponent('raycaster-mouse', {
 
     onDocumentMouseDown: function (event) {
         event.preventDefault();
+
+        this.justLoaded = false
+
         this.lastClientX = event.clientX
         this.lastClientY = event.clientY
 
